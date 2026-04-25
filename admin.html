@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+	<link rel="icon" href="./burger-huge-svgrepo-com.svg">
+</head>
+<body class="horror">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger">
+    <div class="container">
+  <a class="navbar-brand" href="task frond.html">KEROO</a>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="mb-0">
+        <i class="fas fa-tachometer-alt me-2"></i>Admin Dashboard
+      </h4>
+      <div class="d-flex gap-2">
+        <a href="task frond.html" class="btn btn-outline-primary btn-sm">
+          <i class="fas fa-home me-1"></i>View Site
+        </a>
+        <a href="menu.html" class="btn btn-outline-success btn-sm">
+          <i class="fas fa-utensils me-1"></i>View Menu
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Add New Item Form -->
+      <div class="col-lg-5 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0">
+              <i class="fas fa-plus-circle me-2"></i>Add New Item
+            </h5>
+          </div>
+          <div class="card-body">
+            <form id="addForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Name *</label>
+                    <input type="text" name="name" class="form-control" placeholder="Item name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Category *</label>
+                    <select name="category" class="form-select" required>
+                      <option value="">Select Category</option>
+                      <option value="Starters">Starters</option>
+                      <option value="Main">Main Dishes</option>
+                      <option value="Desserts">Desserts</option>
+                      <option value="Drinks">Drinks</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Price (EGP) *</label>
+                    <input type="number" name="price" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Image URL</label>
+                    <input type="url" name="image" class="form-control" placeholder="https://example.com/image.jpg">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Description *</label>
+                <textarea name="description" class="form-control" rows="3" placeholder="Describe the item..." required></textarea>
+              </div>
+              
+              <div class="mb-3">
+                <label class="form-label">Ingredients</label>
+                <input type="text" name="ingredients" class="form-control" placeholder="List main ingredients">
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" name="featured">
+                    <label class="form-check-label">
+                      <i class="fas fa-star me-1"></i>Featured Item
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label">Tags</label>
+                    <input type="text" name="tags" class="form-control" placeholder="e.g., veg, spicy, hot">
+                    <small class="form-text text-muted">Comma-separated tags</small>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-success w-100">
+                <i class="fas fa-plus me-2"></i>Add Item
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Items List -->
+      <div class="col-lg-7">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="fas fa-list me-2"></i>Items List
+            </h5>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-secondary btn-sm" id="refreshBtn">
+                <i class="fas fa-sync-alt me-1"></i>Refresh
+              </button>
+              <button class="btn btn-outline-info btn-sm" id="exportBtn">
+                <i class="fas fa-download me-1"></i>Export
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="adminLoadingSpinner" class="text-center py-4" style="display: none;">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <p class="mt-2 text-muted">Loading items...</p>
+            </div>
+            
+            <div id="adminList">
+              <!-- Items will be loaded here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastContainer"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
