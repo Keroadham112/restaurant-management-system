@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>menu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+	<link rel="icon" href="./burger-huge-svgrepo-com.svg">
+</head>
+<body class="horror">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger">
+    <div class="container">
+  <a class="navbar-brand" href="task fronT.html">KEROO</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="task fronT.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+          <li class="nav-item">
+            <a class="nav-link position-relative" href="#" id="cartLink">
+              <i class="fas fa-shopping-cart"></i>
+              <span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <div class="d-flex justify-content-between mb-3">
+  <h4>Menu</h4>
+  <a class="btn btn-primary" href="admin.html">Admin Dashboard</a>
+    </div>
+
+    <!-- Enhanced Filters Section -->
+    <div class="mb-4">
+      <!-- Search and Sort Row -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+            <input id="searchInput" class="form-control" placeholder="Search by name, description, or ingredients">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <select id="sortSelect" class="form-select">
+            <option value="">Sort by...</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+            <option value="name-desc">Name: Z → A</option>
+            <option value="featured">Featured First</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button id="clearFilters" class="btn btn-outline-secondary w-100">
+            <i class="fas fa-times me-1"></i>Clear Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="mb-3">
+        <div class="btn-group w-100" role="tablist" id="categoryTabs">
+          <button class="btn btn-outline-primary active" data-cat="">All Items</button>
+          <button class="btn btn-outline-primary" data-cat="Starters">Starters</button>
+          <button class="btn btn-outline-primary" data-cat="Main">Main</button>
+          <button class="btn btn-outline-primary" data-cat="Desserts">Desserts</button>
+          <button class="btn btn-outline-primary" data-cat="Drinks">Drinks</button>
+        </div>
+      </div>
+
+      <!-- Advanced Filters -->
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Price Range</label>
+          <select id="priceFilter" class="form-select">
+            <option value="">All Prices</option>
+            <option value="0-100">Under 100 EGP</option>
+            <option value="100-200">100 - 200 EGP</option>
+            <option value="200+">200+ EGP</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Tags</label>
+          <select id="tagsFilter" class="form-select" multiple>
+            <option value="veg">Vegetarian</option>
+            <option value="spicy">Spicy</option>
+            <option value="sweet">Sweet</option>
+            <option value="hot">Hot</option>
+            <option value="cold">Cold</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Quick Actions</label>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-success btn-sm" id="featuredOnly">
+              <i class="fas fa-star me-1"></i>Featured Only
+            </button>
+            <button class="btn btn-outline-info btn-sm" id="newestFirst">
+              <i class="fas fa-clock me-1"></i>Newest First
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="itemsGrid" class="row g-3">
+      <!-- cards -->
+    </div>
+
+    <div id="loadingSpinner" class="text-center my-4 d-none">
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+  </main>
+
+  <footer class="bg-white border-top py-3 mt-4">
+  <div class="container text-center small">© 2025 KEROO</div>
+  </footer>
+
+  <!-- Toast container for notifications -->
+  <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/state.js"></script>
+  <script src="assets/js/localApiClient.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

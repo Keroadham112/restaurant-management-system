@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Restaurant Menu - Home</title>
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&display=swap" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
+	<link rel="icon" href="./burger-huge-svgrepo-com.svg">
+</head>
+	<body class="horror">
+	<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-danger">
+		<div class="container">
+			<a class="navbar-brand" href="task fronT.html">KEROO</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navMenu">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item"><a class="nav-link" href="task fronT.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="menu.html">Menu</a></li>
+							<li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+							<li class="nav-item">
+								<a class="nav-link position-relative" href="#" id="cartLink">
+									<i class="fas fa-shopping-cart"></i>
+									<span id="cartCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
+								</a>
+							</li>
+						</ul>
+			</div>
+		</div>
+	</nav>
+
+	<main class="container py-4">
+		<!-- Carousel / Featured -->
+		<div id="featuredCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+			<div class="carousel-inner" id="carouselInner">
+				<!-- slides injected by JS -->
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</button>
+		</div>
+
+		<!-- Quick categories -->
+		<div class="mb-4">
+			<h5>Quick categories</h5>
+			<div class="d-flex gap-2">
+				<a href="menu.html?category=Starters" class="btn btn-outline-primary">Starters</a>
+				<a href="menu.html?category=Main" class="btn btn-outline-primary">Main</a>
+				<a href="menu.html?category=Desserts" class="btn btn-outline-primary">Desserts</a>
+				<a href="menu.html?category=Drinks" class="btn btn-outline-primary">Drinks</a>
+			</div>
+		</div>
+
+		<!-- Featured cards -->
+		<section>
+			<h5 class="mb-3">Featured dishes</h5>
+			<div class="row" id="featuredCards">
+				<!-- injected by JS -->
+			</div>
+		</section>
+	</main>
+
+	<footer class="bg-white border-top py-3 mt-4">
+		<div class="container text-center small">© 2025 KEROO - Menu demo</div>
+	</footer>
+
+	<!-- Toast container for notifications -->
+	<div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+	<!-- Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/js/state.js"></script>
+	<script src="assets/js/localApiClient.js"></script>
+	<script src="assets/js/api.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
